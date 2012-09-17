@@ -11,6 +11,7 @@
 <script type="text/javascript" src="{{ STATIC_URL }}js/paper.js"  > </script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/workflow.js"  ></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.smooth-scroll.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/validation/jquery.validation.min.js"></script>
 
 <script>
 
@@ -25,14 +26,65 @@ $(document).ready(function(){
 	// Sending project form.
 
 	$('#project-submit-btn').click(function(e){
-
+		
 		e.preventDefault();
+		
+		// Validate form
+		
+		var valid = true; 
 
-		var btn = $(this);
-		btn.button('loading');
-		setTimeout(function(){
-			btn.button('reset');
-		}, 3000);
+		nombre = $('[name=nombre]');
+		telefono = $('[name=telefono]');
+		email = $('[name=email]');
+		descripcion = $('[name=descripcion]');
+		
+		$.each([nombre, telefono, descripcion], function(index, el){
+			if(!validateRequired(el)){
+				el.parent().addClass('error');
+				valid = false;
+			}else{
+				el.parent().removeClass('error');
+			}
+		});
+
+		if (!validateEmail(email)){
+			email.parent().addClass('error');
+			valid = false;
+		}else{
+			email.parent().removeClass('error');
+		}
+
+		if(valid){
+			
+			var btn = $(this);
+			btn.button('loading');
+
+
+			// Disabling controls
+			
+			//$('.project input, .project textarea, .project select, .project button').attr('disabled', 'disabled');
+
+
+			// Sending data.
+			$('#send-project-form').serialize();
+			$.post('send_project', $('#send-project-form').serialize(), function(d){
+				btn.button('reset');
+				if (d=='OK'){
+					$('#project-cover').show();
+				}else{
+					alert('Ha ocurrido un error, por favor intente mas tarde, disculpe las molestias');
+				}	
+
+			});
+		}else{	
+
+			// Do form invalid stuff.
+			
+			alert('Algunos campos requeridos del formulario estan incompletos, o contienen informacion inválida, por favor, compruebe los datos antes de enviar.');
+
+		}
+
+
 	});
 
 
@@ -41,9 +93,25 @@ $(document).ready(function(){
 	$('.navbar a, .splash a').smoothScroll();
 
 
-
-
 });
+
+// Validate functions
+
+function validateRequired(el){
+	if (el.val() != '') {
+		return true;
+	}else{
+		return false;
+	}
+}
+
+function validateEmail(el){
+	if (el.val().indexOf('@')!=-1 && el.val().indexOf('.')!=-1){
+		return true;
+	}else{
+		return false;
+	}
+}
 
 </script>
 
@@ -173,37 +241,38 @@ $(document).ready(function(){
     <h1 id='budget'>Cuentenos de su Proyecto</h1>
     <p class='frase-seccion'>Le enviaremos un presupuesto aproximado.</p>
     <div class='project'>
-      <form>
+      <form id='send-project-form'>
+      {% csrf_token %}
       <div class='row-fluid'>
         <div class='span6'>
-	    <input type='text' placeholder='Nombre' class='span12'>
-	    <input type='text' placeholder='Empresa (Opcional)' class='span12'>
-	    <input type='text' placeholder='Teléfono' class='span12'>
-	    <input type='text' placeholder='E-mail' class='span12'>
+	    <div class='control-group'><input name='nombre' type='text' placeholder='Nombre' class='span12'></div>
+	    <div class='control-group'><input name='empresa' type='text' placeholder='Empresa (Opcional)' class='span12'></div>
+	    <div class='control-group'><input name='telefono' type='text' placeholder='Teléfono' class='span12'></div>
+	    <div class='control-group'><input name='email' type='text' placeholder='E-mail' class='span12'></div>
 
 	    <label>Presupuesto disponible</label>
-	    <select>
-              <option selected>Menos de $2000</option>
-              <option>$2000 - $5000</option>
-              <option>$5000 - $10000</option>
-              <option>$10000 - $50000</option>
-              <option>Mas de $50000</option>
+	    <select name='presupuesto'>
+              <option value=1 selected>Menos de $2000</option>
+              <option value=2>$2000 - $5000</option>
+              <option value=3>$5000 - $10000</option>
+              <option value=4>$10000 - $50000</option>
+              <option value=5>Mas de $50000</option>
 	    </select>
 
 	    <label>Marco de Tiempo Disponible</label>
-	    <select>
-              <option>Cuanto antes!</option>
-              <option selected>Un par de semanas</option>
-              <option>Un mes</option>
-              <option>6 Meses</option>
-              <option>Cuando sea.</option>
+	    <select name='tiempo'>
+              <option value=1>Cuanto antes!</option>
+              <option value=2 selected>Un par de semanas</option>
+              <option value=3>Un mes</option>
+              <option value=4>6 Meses</option>
+              <option value=5>Cuando sea.</option>
 	    </select>
 	</div>
 	<div class='span6'>
 	   <label>Describa su proyecto</label>
-	   <textarea rows=10 class='span12 full-width-textarea'></textarea>
+	   <div class='control-group'><textarea name='descripcion' rows=10 class='span12 full-width-textarea'></textarea></div>
 	   <label class='checkbox'>
-	     <input type='checkbox'>
+	     <input name='mailcopy' type='checkbox' checked>
 	     Enviar una copia a mi e-mail.
 	   </label>
 	</div>

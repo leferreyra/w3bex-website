@@ -1,5 +1,11 @@
 # Django settings for w3bex project.
 
+# Mail Settings
+
+EMAIL_HOST = 'localhost'
+EMAIL_HOST_USER = 'noreply@w3bex.com'
+EMAIL_HOST_PASSWORD = 'prow3btoS'
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -11,10 +17,10 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'w3bex.db',                      # Or path to database file if using sqlite3.
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
+        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'w3bex',                      # Or path to database file if using sqlite3.
+        'USER': 'root',                      # Not used with sqlite3.
+        'PASSWORD': 'd7qo17834q',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
