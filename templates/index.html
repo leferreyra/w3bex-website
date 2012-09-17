@@ -1,0 +1,238 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+    W3BEX | Empresa de desarrollo de software.
+
+{% endblock %}
+
+{% block head %}
+
+<script type="text/javascript" src="{{ STATIC_URL }}js/paper.js"  > </script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/workflow.js"  ></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.smooth-scroll.min.js"></script>
+
+<script>
+
+$(document).ready(function(){
+
+
+	// Initialize Bootstrap plugins.
+
+	$('[rel=popover]').popover({trigger:'hover', placement: 'top', 'delay': 300});
+
+
+	// Sending project form.
+
+	$('#project-submit-btn').click(function(e){
+
+		e.preventDefault();
+
+		var btn = $(this);
+		btn.button('loading');
+		setTimeout(function(){
+			btn.button('reset');
+		}, 3000);
+	});
+
+
+	// Setting up smooth scrolling.
+
+	$('.navbar a, .splash a').smoothScroll();
+
+
+
+
+});
+
+</script>
+
+
+<!-- Cargar Facebook Code -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+<!-- Cargar Twitter Code -->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+{% endblock %}
+
+
+{% block body %}
+
+
+
+
+<!-- Barra de navegacion -->
+  
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class='container'>
+    <a class="logo" href="./"><img src='{{ STATIC_URL }}img/w3bex-logo.png'></a>
+    <ul class="nav pull-right">
+      <li class=""><a href="#services">Que hacemos</a></li>
+      <li><a href="#working">Modus operandi</a></li>
+      <li><a href="#team">Conozca al equipo</a></li>
+      <li><a href="#budget">Cuentenos de su proyecto</a></li>
+      <li><a href="#contact">Contáctenos</a></li>
+    </ul>
+    </div>
+  </div>
+</div> 
+
+
+<!-- Splash -->
+
+<div class='splash' id='splash'>
+  <div class='container'>
+    <h1>W3BEX</h1>
+    <p>De a conocer sus productos, expanda su mercado, optimice procesos administrativos, automatice tareas.</p>
+    <p><a href='#budget' class='btn btn-primary btn-large'>Cuentenos de su proyecto</a></p>
+  </div>
+</div>
+
+
+<!-- Social
+-------------------------------------------- -->
+
+<div class='social'>
+  <div class='container'>
+    <ul>
+      <li>
+        <a href="https://twitter.com/w3bex" class="twitter-follow-button" data-show-count="true" data-lang="es">Seguir @w3bex</a>
+      </li>
+      <li>
+        <div class="fb-like" data-href="http://facebook.com/w3bex" data-send="true" data-layout="button_count" data-width="auto" data-show-faces="true" data-font="arial"></div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+
+<!-- Marketing
+-------------------------------------------- -->
+
+<div class='container'>
+  <div class='marketing'>
+    <h1 id='services'>Nuestros Servicios</h1>
+    <p class='frase-seccion'>Algunas de las cosas que podemos hacer.</p>
+    <div class='row-fluid'>
+      <div class='span4'>
+        <img src='{{ STATIC_URL }}img/social.png'>
+        <h2>Redes Sociales</h2>
+        <p>Integramos nuestras soluciones de software con las mas 
+        populares redes sociales, para que sus actividades tengan
+        mas impacto en sus clientes.</p>
+      </div>
+      <div class='span4'>
+        <img src='{{ STATIC_URL }}img/multi-platform.png'>
+        <h2>Sistemas Multiplataforma</h2>
+        <p>Desarrollamos aplicaciones para cualquier plataforma.
+        Web, Desktop y Dispositivos moviles.</p>
+      </div>
+      <div class='span4'>
+        <img src='{{ STATIC_URL }}img/ecommerce.png'>
+        <h2>E-Commerce</h2>
+        <p>Construimos plataformas de venta en línea.
+        Expanda su mercado y llegue a todo lugar con su producto</p>
+      </div>
+    </div>
+    <hr> 
+    <h1 id='working'>Modus Operandi</h1>
+    <p class='frase-seccion'>Nuestro simple y eficiente flujo de trabajo.</p>
+    <div class='workflow'>
+      <canvas id='workflow-canvas' width=460 height=270></canvas>
+      <p>
+        Lo primero que hacemos cuando recibimos la informacion de su proyecto
+	es analizarlo para estimar nuestro plan de desarrollo.
+	<br>
+      </p>
+    </div>
+    <hr> 
+    <h1 id='team'>Conozca al equipo</h1>
+    <p class='frase-seccion'>Aqui se origina la magia de w3bex.</p>
+    <div class='team-pics'>
+      <div class='pic' rel="popover" data-original-title='Leonardo Ferreyra' data-content='Project Manager, UX Designer.'></div>
+      <div class='pic' rel="popover" data-original-title='Paulo Muchutti' data-content='Frontend developer.'></div>
+      <div class='pic' rel="popover" data-original-title='Franco Escobar' data-content='Backend developer, Java, Python.'></div>
+      <div class='pic' rel="popover" data-original-title='Marcos Portillo' data-content='Java developer.'></div>
+      <div class='pic' rel="popover" data-original-title='Nicolas Maggione' data-content='Frontend Developer.'></div>
+      <div class='pic' rel="popover" data-original-title='Manuel Zubieta' data-content='Frontend ?'></div>
+    </div>
+
+    <hr> 
+    <h1 id='budget'>Cuentenos de su Proyecto</h1>
+    <p class='frase-seccion'>Le enviaremos un presupuesto aproximado.</p>
+    <div class='project'>
+      <form>
+      <div class='row-fluid'>
+        <div class='span6'>
+	    <input type='text' placeholder='Nombre' class='span12'>
+	    <input type='text' placeholder='Empresa (Opcional)' class='span12'>
+	    <input type='text' placeholder='Teléfono' class='span12'>
+	    <input type='text' placeholder='E-mail' class='span12'>
+
+	    <label>Presupuesto disponible</label>
+	    <select>
+              <option selected>Menos de $2000</option>
+              <option>$2000 - $5000</option>
+              <option>$5000 - $10000</option>
+              <option>$10000 - $50000</option>
+              <option>Mas de $50000</option>
+	    </select>
+
+	    <label>Marco de Tiempo Disponible</label>
+	    <select>
+              <option>Cuanto antes!</option>
+              <option selected>Un par de semanas</option>
+              <option>Un mes</option>
+              <option>6 Meses</option>
+              <option>Cuando sea.</option>
+	    </select>
+	</div>
+	<div class='span6'>
+	   <label>Describa su proyecto</label>
+	   <textarea rows=10 class='span12 full-width-textarea'></textarea>
+	   <label class='checkbox'>
+	     <input type='checkbox'>
+	     Enviar una copia a mi e-mail.
+	   </label>
+	</div>
+      </div>
+      <button id='project-submit-btn' class='btn btn-primary pull-right' data-loading-text='Procesando...'>Enviar</button>
+      </form>
+      <div id='project-cover'>
+        <p>Nos comunicaremos con Ud. a la brevedad.</p>
+      </div>
+    </div>
+    <hr> 
+  </div>
+</div>
+
+
+<!-- Footer
+-------------------------------------------- -->
+
+<footer id='contact'>
+  <img src='{{ STATIC_URL }}img/w3bex-logo.png'>
+  <address>
+    +54-362-4766656<br>
+    <a href='mailto:info@w3bex.com'>info@w3bex.com</a><br><br>
+    <a href='http://twitter.com/w3bex' target='_blank'>Twitter: @w3bex</a><br>
+    <a href='http://facebook.com/w3bex' target='_blank'>Facebook.com/w3bex</a><br>
+  </address>
+</footer>
+
+
+
+{% endblock %}
+
