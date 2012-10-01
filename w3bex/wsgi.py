@@ -1,5 +1,5 @@
 """
-WSGI config for w3bex project.
+WSGI config for w3bex_web project.
 
 This module contains the WSGI application used by Django's development server
 and any production WSGI deployments. It should expose a module-level variable
@@ -14,8 +14,16 @@ framework.
 
 """
 import os
+import sys
+
+path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+if path not in sys.path:
+	sys.path.append(path)
+
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "w3bex.settings")
+os.environ['PYTHON_EGG_CACHE'] = '/tmp/'
 
 # This application object is used by any WSGI server configured to use this
 # file. This includes Django's development server, if the WSGI_APPLICATION

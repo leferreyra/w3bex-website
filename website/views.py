@@ -20,21 +20,24 @@ def send_project(request):
 					descripcion = request.POST['descripcion'],
 					tiempo = request.POST['tiempo'],
 					presupuesto = request.POST['presupuesto']  );
-
+	
 		new_project.save();
 		
 		
 		# Si la opcion esta activada, enviamos una copia al email.
-		#if request.POST['mailcopy'] == 'on':
-		#	
-		#	send_mail('Copia del proyecto enviado a w3bex.com', 
-		#		"Nombre: %s\nEmpresa: %s\nTelefono: %s\nProyecto: %s" % (nombre,empresa,telefono,descripcion), 
-		#		'noreply@w3bex.com', 
-		#		[email]);
 		
+		mailbody = 'Nombre: %s\nEmpresa:: %s\nProyecto: %s\n' % (request.POST['nombre'],request.POST['empresa'],request.POST['descripcion'])
+		
+		if request.POST['mailcopy'] == 'on':
+			send_mail('Copia del proyecto enviado a w3bex.com', 
+				mailbody,
+				'noreply@w3bex.com', 
+				[request.POST['email']]);
+		
+		# Enviar una notificacion al correo
+		send_mail('Nuevo proyecto recibido.', mailbody, 'noreply@w3bex.com' , ['leferreyra@gmail.com']);
 	else:
-
 		return 	HttpResponse("ERROR");
-
+	
 	return HttpResponse("OK");
 

@@ -2,9 +2,9 @@
 
 # Mail Settings
 
-EMAIL_HOST = 'localhost'
 EMAIL_HOST_USER = 'noreply@w3bex.com'
-EMAIL_HOST_PASSWORD = 'prow3btoS'
+EMAIL_HOST_PASSWORD = 'w3bm41lQ'
+DEFAULT_FROM_MAIL = 'noreply@w3bex.com'
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -18,9 +18,9 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'w3bex',                      # Or path to database file if using sqlite3.
-        'USER': 'root',                      # Not used with sqlite3.
-        'PASSWORD': 'd7qo17834q',                  # Not used with sqlite3.
+        'NAME': 'w3bex_w3bex',                      # Or path to database file if using sqlite3.
+        'USER': 'w3bex_admin',                      # Not used with sqlite3.
+        'PASSWORD': 'd7qo17834Q',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
@@ -112,7 +112,7 @@ ROOT_URLCONF = 'w3bex.urls'
 WSGI_APPLICATION = 'w3bex.wsgi.application'
 
 TEMPLATE_DIRS = (
-    '/home/rooter/Projects/w3bex/templates',
+    '/home/w3bex/w3bex/templates',
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.

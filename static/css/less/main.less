@@ -74,13 +74,46 @@ body {
     font-family: exo;
   }
   h2 {
+    font-family: Exo;
     font-weight: 200;
     margin-bottom: 5px;
   }
+  
+  h3 {
+    font-family: Exo;
+    font-size: 24px;
+    line-height: 24px;
+    font-weight: normal;
+  }
+
   p {
     font-size: 16px;
     line-height: 1.5;
   }
+
+  .step-number{
+    font-size: 40px;
+    font-family: Exo;
+    font-weight: bold;
+    width: 55px;
+    height: 55px;
+    line-height: 60px;
+    -webkit-border-radius: 50px;
+    margin: 0px auto 0px;
+    border: 8px solid white;
+
+    -webkit-transition-property: color, border, box-shadow;
+    -webkit-transition-duration: 0.2s, 0.2s, 0.4s;
+    -webkit-transition-delay: 0s, 0.2s, 0.2s;
+  }
+
+  .step-active {
+    background: #aad400;
+    border: 8px solid #ccc;
+    box-shadow: 0px 2px 2px gray;
+    color: black;
+  }
+
   .frase-seccion {
     margin-bottom: 40px;
     font-size: 20px;
@@ -88,23 +121,9 @@ body {
     line-height: 25px;
     color: #999;
   }
+
   hr { margin: 70px 0px 0px; }
-  .workflow{
-    width: 900px;
-    margin: 0px auto 0px;
-    height: 280px;
 
-    canvas {
-      float:left; 
-    }
-
-    p {
-      padding: 50px 0px;
-      text-align: left;
-      width: 430px;
-      float:right;
-    }
-  }
 }
 
 
@@ -128,7 +147,7 @@ footer {
 // Team Pics Box Markup
 
 .team-pics {
-  width: 900px;
+  max-width: 900px;
   margin: 0px auto 0px;
 
   .pic {

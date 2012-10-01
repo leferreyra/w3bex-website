@@ -8,10 +8,7 @@
 
 {% block head %}
 
-<script type="text/javascript" src="{{ STATIC_URL }}js/paper.js"  > </script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/workflow.js"  ></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.smooth-scroll.min.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/validation/jquery.validation.min.js"></script>
 
 <script>
 
@@ -67,14 +64,19 @@ $(document).ready(function(){
 
 			// Sending data.
 			$('#send-project-form').serialize();
-			$.post('send_project', $('#send-project-form').serialize(), function(d){
+			var request = $.post('send_project', $('#send-project-form').serialize(), function(d){
 				btn.button('reset');
 				if (d=='OK'){
 					$('#project-cover').show();
 				}else{
-					alert('Ha ocurrido un error, por favor intente mas tarde, disculpe las molestias');
+					showError();
 				}	
 
+			});
+
+			request.error(function(){ 
+				showError();
+				btn.button('reset');
 			});
 		}else{	
 
@@ -113,6 +115,10 @@ function validateEmail(el){
 	}
 }
 
+function showError(){
+	alert('Ha ocurrido un error, por favor intente mas tarde, disculpe las molestias');
+}
+
 </script>
 
 
@@ -147,7 +153,6 @@ function validateEmail(el){
     <a class="logo" href="./"><img src='{{ STATIC_URL }}img/w3bex-logo.png'></a>
     <ul class="nav pull-right">
       <li class=""><a href="#services">Que hacemos</a></li>
-      <li><a href="#working">Modus operandi</a></li>
       <li><a href="#team">Conozca al equipo</a></li>
       <li><a href="#budget">Cuentenos de su proyecto</a></li>
       <li><a href="#contact">Contáctenos</a></li>
@@ -215,26 +220,15 @@ function validateEmail(el){
       </div>
     </div>
     <hr> 
-    <h1 id='working'>Modus Operandi</h1>
-    <p class='frase-seccion'>Nuestro simple y eficiente flujo de trabajo.</p>
-    <div class='workflow'>
-      <canvas id='workflow-canvas' width=460 height=270></canvas>
-      <p>
-        Lo primero que hacemos cuando recibimos la informacion de su proyecto
-	es analizarlo para estimar nuestro plan de desarrollo.
-	<br>
-      </p>
-    </div>
-    <hr> 
     <h1 id='team'>Conozca al equipo</h1>
     <p class='frase-seccion'>Aqui se origina la magia de w3bex.</p>
     <div class='team-pics'>
       <div class='pic' rel="popover" data-original-title='Leonardo Ferreyra' data-content='Project Manager, UX Designer.'></div>
-      <div class='pic' rel="popover" data-original-title='Paulo Muchutti' data-content='Frontend developer.'></div>
+      <div class='pic' rel="popover" data-original-title='Paulo Muchutti' data-content='Frontend developer, Python developer.'></div>
       <div class='pic' rel="popover" data-original-title='Franco Escobar' data-content='Backend developer, Java, Python.'></div>
       <div class='pic' rel="popover" data-original-title='Marcos Portillo' data-content='Java developer.'></div>
       <div class='pic' rel="popover" data-original-title='Nicolas Maggione' data-content='Frontend Developer.'></div>
-      <div class='pic' rel="popover" data-original-title='Manuel Zubieta' data-content='Frontend ?'></div>
+      <div class='pic' rel="popover" data-original-title='Manuel Zubieta' data-content='Frontend developer.'></div>
     </div>
 
     <hr> 
