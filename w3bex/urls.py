@@ -16,5 +16,4 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'website.views.index'),
     url(r'^send_project$', 'website.views.send_project'),
-    url(r'^update/$', 'github.views.update'),
 )
