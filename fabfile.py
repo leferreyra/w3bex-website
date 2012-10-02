@@ -9,4 +9,5 @@ def deploy():
     local("git push origin master")
     with cd(remote_path):
         run("git pull origin master")
+	run("/etc/init.d/httpd restart")
     
