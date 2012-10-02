@@ -5,7 +5,7 @@ env.hosts = ['root@w3bex.com:4190']
 remote_path = "/home/w3bex/w3bex"
 
 def deploy():
-    local("git -a commit");
+    local("git commit -a");
     local("git push origin master")
     with cd(remote_path):
         run("git pull origin master")
