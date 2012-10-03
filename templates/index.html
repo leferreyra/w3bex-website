@@ -127,7 +127,7 @@ function showError(){
 function loadSplashBackground(){
 
 	img = new Image();
-	imgURL = "http://w3bex.com/static/img/splash/mountain.jpeg";
+	imgURL = "{{ STATIC_URL }}img/splash/{{ splash_background }}";
 
 	// When the image finished loading.
 	img.onload = function(){
