@@ -19,12 +19,12 @@ body {
 
 .splash {
   width: 100%;
-  background: url('../img/splash/colors.jpeg');
+  background: black;
   background-position: center center;
   color: white;
   text-align: center;
-  padding: 70px 0px ;
   font-family: exo, Helvetica, Sans, Serif;
+
 
   h1 {
     line-height: 120px;
@@ -44,6 +44,12 @@ body {
     font-size: 24px;
   }
 
+}
+
+#splash-cover {
+  padding: 70px 0px;
+  background-color: #333;
+  -webkit-transition: background 1s ease-in-out;
 }
 
 .social {
@@ -220,8 +226,10 @@ footer {
 
 
 @media (max-width: 767px) {
-  .splash {
+  #splash-cover { 
     padding: 40px 0px;
+  }
+  .splash {
     h1 {
       font-size: 100px;
       line-height: 100px;
@@ -266,8 +274,10 @@ footer {
 
 
 @media (max-width: 480px) {
-  .splash {
+  #splash-cover {
     padding: 10px 0px;
+  }
+  .splash {
     h1 {
       font-size: 60px;
       line-height: 60px;
