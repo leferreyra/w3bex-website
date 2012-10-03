@@ -252,11 +252,20 @@ footer a:hover {
     margin: 0px;
   }
   .marketing h1 {
-    font-size: 50px;
+    font-weight: bold;
+    font-size: 30px;
     line-height: 50px;
-    padding: 40px 0px 10px;
+    padding: 40px 0px 0px;
   }
   .marketing hr {
     margin: 40px 0px 0px;
+  }
+  .marketing h2 {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .marketing .frase-seccion {
+    font-size: 16px;
+    font-weight: normal;
   }
 }
