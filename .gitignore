@@ -5,3 +5,4 @@ settings.py
 *.db
 
 *.swp
+.directory
