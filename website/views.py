@@ -3,10 +3,14 @@ from website.models import *
 from django.template import RequestContext
 from django.http import HttpResponse
 from django.core.mail import send_mail
+from random import sample
 
 def index(request):
+    
+    imgs = ['mountain.jpeg', 'green.jpeg', 'river.jpeg', 'colors.jpeg']
+    splash_background_image = sample(imgs, 1)[0];
 
-    return render_to_response('index.html', {}, context_instance=RequestContext(request))
+    return render_to_response('index.html', { "splash_background":splash_background_image }, context_instance=RequestContext(request))
 
 
 def send_project(request):

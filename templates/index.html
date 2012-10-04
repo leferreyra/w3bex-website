@@ -94,6 +94,11 @@ $(document).ready(function(){
 
 	$('.navbar a, .splash a').smoothScroll();
 
+	
+	// Load splash image asynchronusly
+
+	loadSplashBackground();
+
 
 });
 
@@ -118,6 +123,23 @@ function validateEmail(el){
 function showError(){
 	alert('Ha ocurrido un error, por favor intente mas tarde, disculpe las molestias');
 }
+
+function loadSplashBackground(){
+
+	img = new Image();
+	imgURL = "{{ STATIC_URL }}img/splash/{{ splash_background }}";
+
+	// When the image finished loading.
+	img.onload = function(){
+		$('.splash').css({'background-image': 'url("'+imgURL+'")', 'background-position': 'center center'});
+		$('#splash-cover').css('background-color', 'transparent');
+	}
+
+	// Start loading
+
+	img.src = imgURL;
+}
+
 
 </script>
 
@@ -175,10 +197,12 @@ function showError(){
 <!-- Splash -->
 
 <div class='splash' id='splash'>
-  <div class='container'>
-    <h1>W3BEX</h1>
-    <p>De a conocer sus productos, expanda su mercado, optimice procesos administrativos, automatice tareas.</p>
-    <p><a href='#budget' class='btn btn-primary btn-large'>Cuentenos de su proyecto</a></p>
+  <div id='splash-cover'>
+    <div class='container'>
+      <h1>W3BEX</h1>
+      <p>De a conocer sus productos, expanda su mercado, optimice procesos administrativos, automatice tareas.</p>
+      <p><a href='#budget' class='btn btn-primary btn-large'>Cuentenos de su proyecto</a></p>
+    </div>
   </div>
 </div>
 
