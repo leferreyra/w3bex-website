@@ -3,6 +3,5 @@
 *.pyc
 settings.py
 *.db
-
-*.swp
 .directory
+*.swp
