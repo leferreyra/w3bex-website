@@ -7,7 +7,7 @@ from random import sample
 
 def index(request):
     
-    imgs = ['mountain.jpeg', 'green.jpeg', 'river.jpeg', 'colors.jpeg']
+    imgs = ['space.jpg', 'green.jpeg', 'river.jpeg', 'colors.jpeg']
     splash_background_image = sample(imgs, 1)[0];
 
     return render_to_response('index.html', { "splash_background":splash_background_image }, context_instance=RequestContext(request))
