@@ -12,6 +12,14 @@ body {
   float: left;
   padding: 5px;
 }
+.logo .icon-refresh {
+  margin: 3px 0px;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+.logo:hover .icon-refresh {
+  opacity: 0.7;
+}
 .splash {
   width: 100%;
   background: black;
